@@ -8,6 +8,20 @@ using namespace std;
 png_infop info_ptr;
 png_bytepp row_pointers;
 
+
+// Encode the 4 channels
+void encode_channels(int red, int green, int blue, int opacity)
+{
+    // From " " to "176"
+    int min = 40;
+    int max = 176;
+    
+    // y = (red + green + blue + opacity) % 176;
+
+    printf("%c", ((red + green + blue + opacity) % max) + 40);
+}
+
+
 void read_png(char *file_name)
 {
     FILE *fp = fopen(file_name, "rb+");
@@ -24,13 +38,14 @@ void read_png(char *file_name)
         {
             //printf("%d %d %d ", row_pointers[i][j], row_pointers[i][j+1], row_pointers[i][j + 2]);
             // print " " if transparent
-            if(row_pointers[i][j] == 0 && row_pointers[i][j+1] == 0 && row_pointers[i][j+2] == 0 && row_pointers[i][j + 3] == 0)
-            {
-                printf(" ");
-            }else
-            {
-                printf("w");
-            }
+            // if(row_pointers[i][j] == 0 && row_pointers[i][j+1] == 0 && row_pointers[i][j+2] == 0 && row_pointers[i][j + 3] == 0)
+            // {
+            //     printf(" ");
+            // }else
+            // {
+            //     printf("w");
+            // }
+            encode_channels(row_pointers[i][j], row_pointers[i][j+1], row_pointers[i][j + 2], row_pointers[i][j+3]);
         }
 
         printf("\n");

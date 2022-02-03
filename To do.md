@@ -3,7 +3,8 @@
 				Check file is/not PNG \
 1. Got pixels information \/
 2. Transform -- in progress 
-		Fix the goddman bug
+		Fix the goddman bug\/ it has four channels four! Fouuuuuuuuur!
+		
 				-- Why only show part of the image?
 3.
 4. Print 
