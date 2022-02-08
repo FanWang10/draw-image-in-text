@@ -15,10 +15,10 @@ void encode_channels(int red, int green, int blue, int opacity)
     // From " " to "176"
     int min = 40;
     int max = 176;
-    
+
     // y = (red + green + blue + opacity) % 176;
 
-    printf("%c", ((red + green + blue + opacity) % max) + 40);
+    printf("%c", ((red + green + blue + 0) % max) + 40);
 }
 
 
@@ -34,7 +34,7 @@ void read_png(char *file_name)
     // Print each pixel value
     for(int i = 0; i < png_get_image_height(png_ptr, info_ptr); i++)
     {
-        for(int j = 0; j < png_get_image_width(png_ptr, info_ptr) * 4; j = j + 4)
+        for(int j = 0; j < png_get_image_width(png_ptr, info_ptr) ; j = j + 1)
         {
             //printf("%d %d %d ", row_pointers[i][j], row_pointers[i][j+1], row_pointers[i][j + 2]);
             // print " " if transparent
@@ -69,12 +69,8 @@ void write_png(char *file_name)
 
 int main()
 {
-    
-    // ofstream myFile;
-    // myFile.open("textArt.txt");
-    // myFile << "This gonna be a Text Art";
-    // myFile.close();
-    char name[] = "pic.png";
+
+    char name[] = "images.png";
     char name2[] = "output.png";
     read_png(name);
     write_png(name2);
@@ -83,4 +79,3 @@ int main()
 
     return 0;
 }
-
